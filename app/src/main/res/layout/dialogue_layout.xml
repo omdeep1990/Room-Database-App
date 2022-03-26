@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="30dp"
+    android:elevation="40dp"
+    app:cardBackgroundColor="@color/cardview_light_background"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Do you want to exit?"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_yes"
+        android:layout_below="@id/exit"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:src="@drawable/yes"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_no"
+        android:layout_below="@id/exit"
+        android:layout_toRightOf="@id/img_yes"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:src="@drawable/no"/>
+</RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

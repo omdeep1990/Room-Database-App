@@ -1,10 +1,12 @@
 package com.omdeep.roomdatabaseapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,13 +18,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Toast;
-
 import com.omdeep.roomdatabaseapp.databinding.ActivityMainBinding;
-import com.omdeep.roomdatabaseapp.databinding.ActivityUserInputBinding;
 import com.omdeep.roomdatabaseapp.databinding.DialogUpdateRoomBinding;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemLongClickListener {
@@ -131,17 +129,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
 
             case R.id.item_update_record:
-                DialogUpdateRoomBinding binding = DialogUpdateRoomBinding.inflate(getLayoutInflater());
+                DialogUpdateRoomBinding binding1 = DialogUpdateRoomBinding.inflate(getLayoutInflater());
                 Dialog dialog = new Dialog(this);
-                dialog.setContentView(binding.getRoot());
+                dialog.setContentView(binding1.getRoot());
                 dialog.setCancelable(false);
                 dialog.show();
                 Window window = dialog.getWindow();
                 window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-                binding.etFname.setText(user.getFirstName());
-                binding.etLname.setText(user.getLastName());
-                binding.etMnumber.setText(user.getMobileNumber());
-                binding.btnUpdate.setOnClickListener(new View.OnClickListener() {
+                binding1.etFname.setText(user.getFirstName());
+                binding1.etLname.setText(user.getLastName());
+                binding1.etMnumber.setText(user.getMobileNumber());
+                binding1.btnUpdate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         new UpdateAsynTask().execute();
@@ -195,5 +193,25 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Alert Dialogue");
+        dialog.setMessage("Do you want to exit?");
+        dialog.setCancelable(false);
+        dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finishAffinity();
 
+            }
+        });
+             dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                 @Override
+                 public void onClick(DialogInterface dialog, int i) {
+                     dialog.cancel();
+                 }
+             });
+             dialog.create().show();
+    }
 }
