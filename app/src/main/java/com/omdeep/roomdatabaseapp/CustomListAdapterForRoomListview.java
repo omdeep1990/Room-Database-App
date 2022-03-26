@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class CustomListAdapterForRoomListview extends BaseAdapter {
@@ -36,8 +38,11 @@ public class CustomListAdapterForRoomListview extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(R.layout.list_adapter, parent, false);
         TextView tvName = convertView.findViewById(R.id.item_name);
+        TextView tvMobile = convertView.findViewById(R.id.item_mobile);
         User data = list.get(position);
         tvName.setText(data.getFirstName()+" "+data.getLastName());
+        tvMobile.setText(data.getMobileNumber());
+
 
         return convertView;
     }

@@ -27,9 +27,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemLongClickListener {
     ActivityMainBinding binding;
-//    private ActivityUserInputBinding insert;
     private UserDao dao;
-    private UserInputActivity inputActivity;
     private CustomListAdapterForRoomListview adapter;
     private List<User> userList = new ArrayList<>();
     private User user;
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         binding.listView.setOnItemLongClickListener(this);
 
-binding.floatingButton.setOnClickListener(new View.OnClickListener() {
+ binding.floatingButton.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         startActivity(new Intent(MainActivity.this, UserInputActivity.class));
@@ -55,34 +53,34 @@ binding.floatingButton.setOnClickListener(new View.OnClickListener() {
 });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.profile_options_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_create_profile:
-                ActivityUserInputBinding binding = ActivityUserInputBinding.inflate(getLayoutInflater());
-                Dialog dialog = new Dialog(this);
-                dialog.setContentView(binding.getRoot());
-                dialog.setCancelable(false);
-                dialog.show();
-                Window window = dialog.getWindow();
-                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-//                binding.etFname.setText(user.getFirstName());
-//                binding.etLname.setText(user.getLastName());
-//                binding.btnInsert.setOnClickListener(new View.OnClickListener() {
-////                    @Override
-//                    public void onClick(View view) {
-//                        new UserInputActivity.InsertUserAsyncTask().execute(Collections.singletonList(user)));
-//                    }
-//                });
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.profile_options_menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.item_create_profile:
+////                ActivityUserInputBinding binding = ActivityUserInputBinding.inflate(getLayoutInflater());
+////                Dialog dialog = new Dialog(this);
+////                dialog.setContentView(binding.getRoot());
+////                dialog.setCancelable(false);
+////                dialog.show();
+////                Window window = dialog.getWindow();
+////                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+////                binding.etFname.setText(user.getFirstName());
+////                binding.etLname.setText(user.getLastName());
+////                binding.btnInsert.setOnClickListener(new View.OnClickListener() {
+//////                    @Override
+////                    public void onClick(View view) {
+////                        new UserInputActivity.InsertUserAsyncTask().execute(Collections.singletonList(user)));
+////                    }
+////                });
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -129,6 +127,7 @@ binding.floatingButton.setOnClickListener(new View.OnClickListener() {
         switch (item.getItemId()){
             case R.id.item_delete_record:
                 new DeleteAsynTask().execute();
+
                 break;
 
             case R.id.item_update_record:
@@ -147,6 +146,7 @@ binding.floatingButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         new UpdateAsynTask().execute();
                         dialog.dismiss();
+//                        return dao.updateUser();
                     }
                 });
                 break;
@@ -179,9 +179,9 @@ binding.floatingButton.setOnClickListener(new View.OnClickListener() {
         @Override
         protected String doInBackground(Void... strings) {
             String msg = "";
-            int i = dao.updateUser(user);
-            if (i>0){
-                msg = i+" data updated;";
+            int j = dao.updateUser(user);
+            if (j>0){
+                msg = j+" data updated successfully";
             }else {
                 msg = "Something went wrong";
             }

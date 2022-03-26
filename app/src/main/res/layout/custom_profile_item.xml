@@ -13,23 +13,36 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     >
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:id="@+id/item_image_view"
-        android:src="@drawable/ic_profile"
-        />
+<!--    <ImageView-->
+<!--        android:layout_width="70dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:id="@+id/item_image_view"-->
+<!--        android:src="@drawable/ic_profile"-->
+<!--        />-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/item_name"
+        android:id="@+id/item_name1"
         android:text="First Last Name"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:layout_toRightOf="@id/item_image_view"
+        android:layout_below="@id/item_name1"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/item_mobile1"
+        android:layout_below="@id/item_name1"
+        android:text="Mobile No."
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         />
 </RelativeLayout>
 </androidx.cardview.widget.CardView>
